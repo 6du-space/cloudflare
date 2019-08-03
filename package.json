@@ -13,7 +13,7 @@
     "dev": "npx nodemon -e ls,js cloudflare-6du.js"
   },
   "dependencies": {
-    "axios-6du": "^0.0.2",
+    "axios-6du": "^0.0.3",
     "config-6du": "0.0.6",
     "https-proxy-agent": "^2.2.2",
     "livescript-system": "^1.0.1",
