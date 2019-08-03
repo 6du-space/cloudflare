@@ -1,6 +1,6 @@
 require! <[
   path
-  cloudflare
+  axios 
 ]>
 require! {
   \config-6du : Config
@@ -11,12 +11,16 @@ do !~>
     \_6DU_ROOT
     \.6du/config
   )
-  [email, key] = await config.li(\cloudflare)
-  cf = cloudflare {
-    email
-    key
-  }
-  cf.zones.browse().then ->
-    console.log arguments
-
+  token = await config.line(\cloudflare)
+  console.log token
+  url = "https://api.cloudflare.com/client/v4/user/tokens/verify"
+  r = await axios.get(
+    url
+    {
+      headers:{
+       \Authorization : "Bearer #token"
+      }
+    }
+  )
+  console.log r.data
 
