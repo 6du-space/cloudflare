@@ -1,16 +1,13 @@
 require! <[
   path
-  axios 
 ]>
 require! {
-  \config-6du : Config
+  \config-6du/6du : config
+  \axios-6du : axios
 }
 
 do !~>
-  config = new Config(
-    \_6DU_ROOT
-    \.6du/config
-  )
+  console.log axios
   token = await config.line(\cloudflare)
   console.log token
   url = "https://api.cloudflare.com/client/v4/user/tokens/verify"
@@ -22,5 +19,5 @@ do !~>
       }
     }
   )
-  console.log r.data
+  # console.log r.data
 
