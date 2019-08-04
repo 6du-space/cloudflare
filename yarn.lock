@@ -1719,6 +1719,10 @@ touch@^3.1.0:
   dependencies:
     nopt "~1.0.10"
 
+tweetnacl@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/tweetnacl/download/tweetnacl-1.0.1.tgz#2594d42da73cd036bd0d2a54683dd35a6b55ca17"
+
 type-check@~0.3.2:
   version "0.3.2"
   resolved "https://registry.npm.taobao.org/type-check/download/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
