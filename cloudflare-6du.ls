@@ -1,5 +1,6 @@
 require! <[
   path
+  semver
 ]>
 require! {
   \config-6du/6du : config
@@ -58,10 +59,14 @@ do !~>
   {result} = await get("zones/#zone-id/dns_records", option)
   option.content = version
   if result.length
-    url = "/" + result[0].id
+    {id,content} = result[0]
+    if semver.lte(version, content)
+      console.log "package.json version #version , TXT content version #content , ignore update"
+      return
+    url = "/" + id
     method = put
   else
     method = post
     url = ""
   r = await method("zones/#zone-id/dns_records"+url,option)
-  console.log method, r
+  console.log method.name, r
