@@ -17,7 +17,8 @@
     "config-6du": "0.0.6",
     "https-proxy-agent": "^2.2.2",
     "livescript-system": "^1.0.1",
-    "livescript-transform-implicit-async": "^1.1.0"
+    "livescript-transform-implicit-async": "^1.1.0",
+    "semver": "^6.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

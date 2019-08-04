@@ -7,8 +7,8 @@ require! {
 }
 
 
-
 do !~>
+  {version} = require(path.join(__dirname,'../sh/package.json'))
   axios = await axios6du()
   [email,key] = await config.li(\cloudflare)
 
@@ -56,7 +56,7 @@ do !~>
     name:host-v
   }
   {result} = await get("zones/#zone-id/dns_records", option)
-  option.content = \2
+  option.content = version
   if result.length
     url = "/" + result[0].id
     method = put
