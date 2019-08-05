@@ -1,5 +1,6 @@
 require! <[
   zlib
+  ./sign
 ]>
 
 z85 = require('ascii85').ZeroMQ
@@ -25,6 +26,7 @@ bitbucket.org/6du-space/sh/raw"""
   console.log ziped.length
   console.log ziped
   r = z85.encode(ziped)
+  console.log sign.hash_sign(r)
   console.log r.toString().length
   console.log r.toString()
   console.log (await promisify(
