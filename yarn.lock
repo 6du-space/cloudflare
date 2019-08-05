@@ -111,6 +111,11 @@ array-unique@^0.3.2:
   version "0.3.2"
   resolved "https://registry.npm.taobao.org/array-unique/download/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
 
+ascii85@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/ascii85/download/ascii85-1.0.2.tgz#6212543d4236944debe4827ecae642776e415448"
+  integrity sha1-YhJUPUI2lE3r5IJ+yuZCd25BVEg=
+
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/assign-symbols/download/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -155,6 +160,11 @@ base@^0.11.1:
     isobject "^3.0.1"
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
+
+big-integer@^1.6.44:
+  version "1.6.44"
+  resolved "https://registry.npm.taobao.org/big-integer/download/big-integer-1.6.44.tgz#4ee9ae5f5839fc11ade338fea216b4513454a539"
+  integrity sha1-TumuX1g5/BGt4zj+oha0UTRUpTk=
 
 binary-extensions@^1.0.0:
   version "1.13.1"
@@ -1888,8 +1898,3 @@ yallist@^2.1.2:
 yallist@^3.0.0, yallist@^3.0.3:
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/yallist/download/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
-
-z85@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/z85/download/z85-0.0.2.tgz#45d353b13e4ee3d376c3fbd37dcda85feed8b0d3"
-  integrity sha1-RdNTsT5O49N2w/vTfc2oX+7YsNM=
