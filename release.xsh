@@ -10,11 +10,12 @@ with open(package_json) as package:
   package = loads(package.read()) 
   version = package['version'].split('.')
   version[-1] = str(int(version[-1])+1)
-  package['version'] = '.'.join(version)
+  package['version'] = version = '.'.join(version)
   package = dumps(package,indent=2)
   echo @(package) > @(package_json)
   cd @(ROOT)/sh
   version = "v%s"%version
+  git add -u
   git commit -m @(version)
   git tag @(version)
   git push origin @(version)
