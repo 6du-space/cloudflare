@@ -14,12 +14,16 @@
   },
   "dependencies": {
     "axios-6du": "^0.0.3",
-    "config-6du": "0.0.6",
+    "config-6du": "^0.0.7",
+    "fs-extra": "^8.1.0",
     "https-proxy-agent": "^2.2.2",
+    "klaw": "^3.0.0",
     "livescript-system": "^1.0.1",
     "livescript-transform-implicit-async": "^1.1.0",
     "semver": "^6.3.0",
-    "tweetnacl": "^1.0.1"
+    "sodium-6du": "^0.0.1",
+    "tweetnacl": "^1.0.1",
+    "z85": "^0.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
