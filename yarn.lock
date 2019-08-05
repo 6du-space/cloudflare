@@ -1583,10 +1583,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-sodium-6du@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npm.taobao.org/sodium-6du/download/sodium-6du-0.0.1.tgz#37f9f69203f601b0a8c70d640c954dc17c18685d"
-  integrity sha1-N/n2kgP2AbCoxw1kDJVNwXwYaF0=
+sodium-6du@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/sodium-6du/download/sodium-6du-0.0.2.tgz?cache=0&sync_timestamp=1565025755822&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsodium-6du%2Fdownload%2Fsodium-6du-0.0.2.tgz#3fef93769d680ce1f213ec09952aac52a658e63e"
+  integrity sha1-P++Tdp1oDOHyE+wJlSqsUqZY5j4=
   dependencies:
     sodium-native "^2.4.3"
 
