@@ -14,10 +14,20 @@ read = (name)~>
     )
   )
 
-module.exports = {
+class Sign
+  (@pk, @sk)->
+  verify:(msg)~>
+    sodium.verify(@pk ,msg)
   hash_sign:(msg)~>
-    sodium.hash_sign(module.exports.sk, msg)
-}
+    sodium.hash_sign(@sk, msg)
 
-do !~>
-  module.exports.sk = await read("sk")
+
+module.exports = ~>
+  [
+    pk
+    sk
+  ] = await Promise.all [
+    read("pk")
+    read("sk")
+  ]
+  new Sign(pk, sk)
