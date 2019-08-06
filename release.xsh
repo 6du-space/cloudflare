@@ -2,8 +2,8 @@
 
 from os.path import abspath,dirname,join
 from json import loads,dumps
-
-ROOT = dirname(dirname(abspath(__file__)))
+PWD = dirname(abspath(__file__))
+ROOT = dirname(PWD)
 
 package_json = join(ROOT, "sh/package.json")
 with open(package_json) as package:
@@ -19,3 +19,4 @@ with open(package_json) as package:
   git commit -m @(version)
   git tag @(version)
   git push origin @(version)
+  @(PWD)/cloudflare-6du.js
