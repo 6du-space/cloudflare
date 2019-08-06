@@ -16,7 +16,7 @@
     "ascii85": "^1.0.2",
     "axios-6du": "^0.0.3",
     "big-integer": "^1.6.44",
-    "config-6du": "^0.0.8",
+    "config-6du": "^0.0.9",
     "fs-extra": "^8.1.0",
     "https-proxy-agent": "^2.2.2",
     "klaw": "^3.0.0",

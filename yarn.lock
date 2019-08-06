@@ -382,10 +382,10 @@ config-6du@0.0.6:
   dependencies:
     fs-extra "^8.1.0"
 
-config-6du@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npm.taobao.org/config-6du/download/config-6du-0.0.8.tgz?cache=0&sync_timestamp=1565061890530&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconfig-6du%2Fdownload%2Fconfig-6du-0.0.8.tgz#f866691110301a0dc3738d939d04173a88e5c70a"
-  integrity sha1-+GZpERAwGg3Dc42TnQQXOojlxwo=
+config-6du@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npm.taobao.org/config-6du/download/config-6du-0.0.9.tgz?cache=0&sync_timestamp=1565062085668&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconfig-6du%2Fdownload%2Fconfig-6du-0.0.9.tgz#9ffcac008478eb6627a3ee5123498592931006e7"
+  integrity sha1-n/ysAIR462Yno+5RI0mFkpMQBuc=
   dependencies:
     fs-extra "^8.1.0"
 
