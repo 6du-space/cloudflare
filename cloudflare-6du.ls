@@ -1,3 +1,5 @@
+#!/usr/bin/env -S node -r livescript-transform-implicit-async/register
+
 require! <[
   path
   semver
