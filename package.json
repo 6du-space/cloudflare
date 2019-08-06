@@ -24,7 +24,6 @@
     "livescript-transform-implicit-async": "^1.1.0",
     "semver": "^6.3.0",
     "sodium-6du": "^0.0.4",
-    "tweetnacl": "^1.0.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
