@@ -68,7 +68,7 @@ class Dns
 
   update:(version, txt)->
     @axios = await axios6du()
-    li = await config.li(\dns/cloudflare , ['#账户\n#私钥'])
+    li = await config.li(\dns/cloudflare , ['#邮箱\n#私钥'])
     if not li or li.length < 2
       console.log "请配置 cloudflare 的 api key"
       return
