@@ -1,6 +1,6 @@
 #!/usr/bin/env xonsh
 
-from os.path import abspath,dirname,join
+from os.path import abspath,dirname,join, exists
 from json import loads,dumps
 PWD = dirname(abspath(__file__))
 ROOT = dirname(PWD)
@@ -20,4 +20,6 @@ with open(package_json) as package:
   git tag @(version)
   git push origin @(version)
   cd @(PWD)
-  @(PWD)/cloudflare-6du.ls
+  if not exists(join(PWD, 'node_modules')):
+    yarn
+  ./cloudflare-6du.ls
