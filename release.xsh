@@ -19,4 +19,4 @@ with open(package_json) as package:
   git commit -m @(version)
   git tag @(version)
   git push origin @(version)
-  @(PWD)/cloudflare-6du.js
+  @(PWD)/cloudflare-6du.ls
