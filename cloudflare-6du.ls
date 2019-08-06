@@ -42,24 +42,24 @@ class Dns
   put : (url, data={})~>
     @_req(\put, url, {data})
 
-  txt : (host, txt, _if)~>
-    host-v = \v. + @host
+  txt : (host, txt, _if, before)~>
     option = {
       type:\TXT
-      name:host-v
+      name:host
     }
     prefix = "zones/#{@zone-id}/dns_records"
     {result} = await @get(prefix, option)
     if result.length
       {id, content} = result[0]
-      if _if and ((await _if(content)) === false)
+      if _if and (_if(content) === false)
         return
       url = "/" + id
       method = \put
     else
       method = \post
       url = ""
-      await _if(txt)
+    if before
+      await before()
     option.content = txt
     await @[method](prefix+url, option)
     return true
@@ -88,9 +88,9 @@ class Dns
             "package.json version #version , TXT content version #content , ignore update"
           )
           return false
-          version.replace(/\./g,'-')+"."+@host
-        await @txt(
-          version.replace(/\./g,'-')+"."+@host
+      ~>
+        @txt(
+          version+"."+@host
           await dns_encode(version, txt)
         )
     )
