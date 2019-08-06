@@ -42,48 +42,58 @@ class Dns
   put : (url, data={})~>
     @_req(\put, url, {data})
 
+  txt : (host, txt, _if)~>
+    host-v = \v. + @host
+    option = {
+      type:\TXT
+      name:host-v
+    }
+    prefix = "zones/#{@zone-id}/dns_records"
+    {result} = await @get(prefix, option)
+    if result.length
+      {id, content} = result[0]
+      if _if and ((await _if(content)) === false)
+        return
+      url = "/" + id
+      method = \put
+    else
+      method = \post
+      url = ""
+      await _if(txt)
+    option.content = txt
+    await @[method](prefix+url, option)
+    return true
+
   update:(version, txt)->
     @axios = await axios6du()
-    li = await config.li(\dns/cloudflare)
+    li = await config.li(\dns/cloudflare, ['1'])
     if not li
       console.log "请配置 cloudflare 的 api key"
       return
     [@email,@key] = li
 
-#     {result} = await @get(
-#       \zones
-#       {
-#         name : @host
-#       }
-#     )
-
-#     @zone-id = result[0].id
-#     console.log @zone-id
-    # host-v = \v. + @host
-    # option = {
-    #   type:\TXT
-    #   name:host-v
-    # }
-    # prefix = "zones/#zone-id/dns_records"
-    # {result} = await get(prefix, option)
-    # option.content = version
-    # if result.length
-    #   {id,content} = result[0]
-    #   if semver.lte(version, content)
-    #     console.log "package.json version #version , TXT content version #content , ignore update"
-    #     return
-    #   url = "/" + id
-    #   method = put
-    # else
-    #   method = post
-    #   url = ""
-
-    # await post(prefix)
-
-    # r = await method(prefix+url,option)
-    # console.log method.name, r
-
-  # update_txt = (name, txt, _if)->
+    {result} = await @get(
+      \zones
+      {
+        name : @host
+      }
+    )
+    @zone-id = result[0].id
+    await @txt(
+      \v. + @host
+      version
+      (content)!~>
+        if semver.lte(version, content)
+          console.log(
+            "package.json version #version , TXT content version #content , ignore update"
+          )
+          return false
+          version.replace(/\./g,'-')+"."+@host
+        await @txt(
+          version.replace(/\./g,'-')+"."+@host
+          await dns_encode(version, txt)
+        )
+    )
 
 
 do !~>
