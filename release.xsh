@@ -19,7 +19,14 @@ with open(package_json) as package:
   git commit -m @(version)
   git tag @(version)
   git push origin @(version)
-  cd @(PWD)
-  if not exists(join(PWD, 'node_modules')):
-    yarn
-  ./cloudflare-6du.ls
+  tmp = $(mktemp -d).strip("\n")
+  git archive master | tar -x -C @(tmp)
+  
+  cd @(tmp)
+  yarn
+
+  #cd @(PWD)
+  # if not exists(join(PWD, 'node_modules')):
+  #   yarn
+  # ./cloudflare-6du.ls
+
