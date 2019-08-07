@@ -24,7 +24,7 @@ class Down
           outpath
           url
           {
-            timeout: 60
+            timeout: 6
             onStart:(meta)!~>
             onEnd:(err,result)!~>
               if err
@@ -61,7 +61,6 @@ class Down
 
 module.exports = (root='')~>
   root = path.join os.homedir!, ".cache/6du", root
-  console.log root
   fs.ensureDirSync(root)
   new Down(root)
 
@@ -86,7 +85,6 @@ do !~>
     bin = Buffer.from(bin, 'base64')
     filename = path.basename(v.resolved).split("#")[0]
     if fileset.has(filename)
-      console.log filename
       continue
     fileset.add filename
     li.push down.get_and_verify(v.resolved, hash_func(hash), bin)
@@ -94,4 +92,4 @@ do !~>
   li = await Promise.all(li)
   for i in li
     hash = await sodium.hash_path(path.join(down.root,i))
-    console.log i.slice(0,-4), hash
+    console.log hash.toString('base64'), ">#{i.slice(0,-4)}<"
