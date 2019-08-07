@@ -94,4 +94,4 @@ do !~>
   li = await Promise.all(li)
   for i in li
     hash = await sodium.hash_path(path.join(down.root,i))
-    console.log i, hash
+    console.log i.slice(0,-4), hash
