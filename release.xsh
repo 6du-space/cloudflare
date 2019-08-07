@@ -11,8 +11,8 @@ with open(package_json) as package:
   version = package['version'].split('.')
   version[-1] = str(int(version[-1])+1)
   package['version'] = version = '.'.join(version)
-  package = dumps(package,indent=2)
-  echo @(package) > @(package_json)
+  with open(package_json, "w") as out:
+    out.write(dumps(package,indent=2))
   cd @(ROOT)/sh
   version = "v%s"%version
   git add -u
@@ -21,7 +21,8 @@ with open(package_json) as package:
   git push origin @(version)
   tmp = $(mktemp -d).strip("\n")
   git archive master | tar -x -C @(tmp)
-  
+
+  print(f"导出到 {tmp}")
   cd @(tmp)
   yarn
 
