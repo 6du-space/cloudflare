@@ -8,6 +8,7 @@ require! <[
 ]>
 require! {
   \fs-extra : fs
+  \sodium-6du : sodium
 }
 
 mtd = require('zeltice-mt-downloader')
@@ -88,5 +89,5 @@ do !~>
       continue
     fileset.add filename
     li.push down.get_and_verify(v.resolved, hash_func(hash), bin)
-
+    sodium.hash_path
   await Promise.all(li)
