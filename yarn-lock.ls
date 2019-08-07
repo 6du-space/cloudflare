@@ -5,6 +5,7 @@ require! <[
   path
   os
   @yarnpkg/lockfile
+  ./Down
 ]>
 require! {
   \fs-extra : fs
@@ -45,4 +46,4 @@ do !~>
   li = await Promise.all(li)
   for i in li
     hash = await sodium.hash_path(path.join(down.root,i))
-    console.log hash.toString('base64'), ">#{i.slice(0,-4)}<"
+    console.log [hash.toString('base64'), i.slice(0,-4)]

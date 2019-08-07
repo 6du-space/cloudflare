@@ -1,5 +1,11 @@
-
-mtd = require('zeltice-mt-downloader')
+require! <[
+  path
+  ./Down
+]>
+require! {
+  \fs-extra : fs
+  \zeltice-mt-downloader : mtu
+}
 
 class Down
   (@root)->
