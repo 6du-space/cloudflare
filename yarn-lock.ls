@@ -30,8 +30,8 @@ do !~>
         )
 
   down = module.exports(\npm)
-
-  lock = lockfile.parse fs.readFileSync path.join(__dirname,'../sh/yarn.lock'),'utf-8'
+  lock = await fs.readFile path.join(__dirname,'../sh/yarn.lock'),'utf-8'
+  lock = lockfile.parse(lock)
   li = []
   fileset = new Set()
   for k, v of lock.object
