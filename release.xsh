@@ -5,29 +5,36 @@ from json import loads,dumps
 PWD = dirname(abspath(__file__))
 ROOT = dirname(PWD)
 
-package_json = join(ROOT, "sh/package.json")
-with open(package_json) as package:
-  package = loads(package.read()) 
-  version = package['version'].split('.')
-  version[-1] = str(int(version[-1])+1)
-  package['version'] = version = '.'.join(version)
-  with open(package_json, "w") as out:
-    out.write(dumps(package,indent=2))
-  cd @(ROOT)/sh
-  version = "v%s"%version
-  git add -u
-  git commit -m @(version)
-  git tag @(version)
-  git push origin @(version)
-  tmp = $(mktemp -d).strip("\n")
-  git archive master | tar -x -C @(tmp)
+def update_version():
+  package_json = join(ROOT, "sh/package.json")
+  with open(package_json) as package:
+    package = loads(package.read()) 
+    version = package['version'].split('.')
+    version[-1] = str(int(version[-1])+1)
+    package['version'] = version = '.'.join(version)
+    with open(package_json, "w") as out:
+      out.write(dumps(package,indent=2))
+    return version
 
-  print(f"导出到 {tmp}")
-  cd @(tmp)
-  yarn
 
-  #cd @(PWD)
-  # if not exists(join(PWD, 'node_modules')):
-  #   yarn
-  # ./cloudflare-6du.ls
+version = update_version()
+cd @(ROOT)/sh
+yarn
+cat yarn.lock
+# version = "v%s"%version
+# git add -u
+# git commit -m @(version)
+# git tag @(version)
+# git push origin @(version)
+# tmp = $(mktemp -d).strip("\n")
+# git archive master | tar -x -C @(tmp)
+
+# print(f"导出到 {tmp}")
+# cd @(tmp)
+# yarn
+
+#cd @(PWD)
+# if not exists(join(PWD, 'node_modules')):
+#   yarn
+# ./cloudflare-6du.ls
 
