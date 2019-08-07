@@ -1863,10 +1863,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-sodium-6du@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/sodium-6du/-/sodium-6du-0.0.6.tgz#61dbf25658a00a36bece6439dcd327256f7f04a9"
-  integrity sha512-j9OPpbRvtEqoidkSdcV8SiQN9Jf10wnTwznzQQehOuvYCbt1fyNZVodLe1zCxB2jmUPJEp+2H06pPcpLrK87Kw==
+sodium-6du@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/sodium-6du/-/sodium-6du-0.0.7.tgz#eaecb0f8d4dc4c08d92f91dba11e4471ff182b42"
+  integrity sha512-EEV6B9ed8nH6wq4FEQRHQQgwzlq33PSVVOloCqU3TPIjK+A6FxCmc6SSEOu2mEZs1KVoIz1HrPJ9NlzFvKwTJA==
   dependencies:
     sodium-universal "^2.0.0"
 
