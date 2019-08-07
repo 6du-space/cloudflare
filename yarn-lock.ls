@@ -48,15 +48,16 @@ class Down
 
     if await fs.exists(outpath)
       if await verify()
-        return
+        return outpath
 
     count = 0
     while count < 3
       ++count
       await @get(url, outpath)
       if await verify()
-        return
+        break
       console.log "下载出错，第#{count}次尝试重下 #{url}"
+    return outpath
 
 module.exports = (root='')~>
   root = path.join os.homedir!, ".cache/6du", root
@@ -89,5 +90,8 @@ do !~>
       continue
     fileset.add filename
     li.push down.get_and_verify(v.resolved, hash_func(hash), bin)
-    sodium.hash_path
-  await Promise.all(li)
+
+  li = await Promise.all(li)
+  for i in li
+    console.log sodium
+    console.log await sodium.hash_path(i)
