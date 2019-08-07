@@ -39,6 +39,11 @@
   resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.6.9.tgz?cache=0&sync_timestamp=1564688737837&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-12.6.9.tgz#ffeee23afdc19ab16e979338e7b536fdebbbaeaf"
   integrity sha1-/+7iOv3BmrFul5M457U2/eu7rq8=
 
+"@yarnpkg/lockfile@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
+  integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/abbrev/download/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -147,6 +152,11 @@ async-each@^1.0.1:
   version "1.0.3"
   resolved "https://registry.npm.taobao.org/async-each/download/async-each-1.0.3.tgz#b727dbf87d7651602f06f4d4ac387f47d91b0cbf"
   integrity sha1-tyfb+H12UWAvBvTUrDh/R9kbDL8=
+
+async@0.2.x:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
+  integrity sha1-trvgsGdLnXGXCMo43owjfLUmw9E=
 
 atob@^2.1.1:
   version "2.1.2"
@@ -1853,10 +1863,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-sodium-6du@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.npm.taobao.org/sodium-6du/download/sodium-6du-0.0.4.tgz#b4351958cb464eb10bf58941317ef189bbac6779"
-  integrity sha1-tDUZWMtGTrEL9YlBMX7xibusZ3k=
+sodium-6du@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/sodium-6du/-/sodium-6du-0.0.5.tgz#57865c860209b7efa0f1e97f2af18c0089d9306e"
+  integrity sha512-GuOuWJGYHGJ8YKugytSjCdsxuDw79zwSIThybauQgSdr293+T2pAsgupf87COfukx2henj8dCYcVrriQqELGAg==
   dependencies:
     sodium-universal "^2.0.0"
 
@@ -2099,6 +2109,11 @@ undefsafe@^2.0.2:
   dependencies:
     debug "^2.2.0"
 
+underscore@1.5.x:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.5.2.tgz#1335c5e4f5e6d33bbb4b006ba8c86a00f556de08"
+  integrity sha1-EzXF5PXm0zu7SwBrqMhqAPVW3gg=
+
 union-value@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/union-value/download/union-value-1.0.1.tgz#0b6fe7b835aecda61c6ea4d4f02c14221e109847"
@@ -2236,3 +2251,11 @@ yallist@^3.0.0, yallist@^3.0.3:
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/yallist/download/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
   integrity sha1-tLBJ4xS+VF486AIjbWzSLNkcPek=
+
+zeltice-mt-downloader@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/zeltice-mt-downloader/-/zeltice-mt-downloader-1.1.3.tgz#4091eb7733a627f333422ba67616438f37f6f08b"
+  integrity sha1-QJHrdzOmJ/MzQiumdhZDjzf28Is=
+  dependencies:
+    async "0.2.x"
+    underscore "1.5.x"

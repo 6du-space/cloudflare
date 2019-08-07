@@ -20,7 +20,6 @@ def update_version():
 version = update_version()
 cd @(ROOT)/sh
 yarn
-cat yarn.lock
 # version = "v%s"%version
 # git add -u
 # git commit -m @(version)
