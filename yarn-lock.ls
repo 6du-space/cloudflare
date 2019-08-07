@@ -1,6 +1,7 @@
 #!/usr/bin/env -S node -r livescript-transform-implicit-async/register
 
 require! <[
+  crypto
   path
   os
   @yarnpkg/lockfile
@@ -51,9 +52,17 @@ do !~>
 
   lock = lockfile.parse fs.readFileSync path.join(__dirname,'../sh/yarn.lock'),'utf-8'
   for k, v of lock.object
-    # console.log v.integrity
     #console.log outpath, resolved
     console.log v.resolved
     r = await down.get(v.resolved)
-    console.log r['file-name'].originalFile
+    filepath = r['file-name'].originalFile
+    [hash, bin] =  v.integrity.split("-",2)
+    bin = Buffer.from(bin, 'base64')
+    filestream = fs.createReadStream(filepath).pipe(crypto.createHash(hash)).on(
+      \finish
+      !->
+        if bin.compare(@read())
+          console.log '文件错误'
+    )
+
     break
