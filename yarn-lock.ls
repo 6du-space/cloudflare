@@ -40,17 +40,22 @@ class Down
     filename = path.basename(url)
     filename = filename.slice(0, filename.indexOf("#"))
     outpath = path.join @root,filename
-    console.log url
-    r = await @get(url, outpath)
-    filepath = r['file-name'].originalFile
-    fs.createReadStream(filepath).pipe(hasher).on(
-      \finish
-      !->
-        if bin.compare(@read())
-          console.log '文件错误'
-        else
-          console.log \校验成功
-    )
+    verify = ~>
+      if not bin.compare(await hasher(outpath))
+        return true
+      await fs.unlink(outpath)
+
+    if await fs.exists(outpath)
+      if await verify()
+        return
+
+    count = 0
+    while count < 3
+      ++count
+      await @get(url, outpath)
+      if await verify()
+        return
+      console.log "下载出错，第#{count}次尝试重下 #{url}"
 
 module.exports = (root='')~>
   root = path.join os.homedir!, ".cache/6du", root
@@ -58,13 +63,30 @@ module.exports = (root='')~>
   fs.ensureDirSync(root)
   new Down(root)
 
-
 do !~>
+  hash_func = (hash)~>
+    hasher = crypto.createHash(hash)
+    (filepath)~>
+      new Promise (resolve, reject)~>
+        fs.createReadStream(filepath).pipe(hasher).on(
+          \finish
+          !->
+            resolve(@read())
+        )
+
   down = module.exports(\npm)
 
   lock = lockfile.parse fs.readFileSync path.join(__dirname,'../sh/yarn.lock'),'utf-8'
+  li = []
+  fileset = new Set()
   for k, v of lock.object
     [hash, bin] =  v.integrity.split("-",2)
     bin = Buffer.from(bin, 'base64')
-    await down.get_and_verify(v.resolved, crypto.createHash(hash), bin)
-    break
+    filename = path.basename(v.resolved).split("#")[0]
+    if fileset.has(filename)
+      console.log filename
+      continue
+    fileset.add filename
+    li.push down.get_and_verify(v.resolved, hash_func(hash), bin)
+
+  await Promise.all(li)
