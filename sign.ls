@@ -18,8 +18,8 @@ class Sign
   (@pk, @sk)->
   verify:(msg)~>
     sodium.verify(@pk ,msg)
-  hash_sign:(msg)~>
-    sodium.hash_sign(@sk, msg)
+  hash-sign:(msg)~>
+    sodium.hash-sign(@sk, msg)
 
 
 module.exports = ~>

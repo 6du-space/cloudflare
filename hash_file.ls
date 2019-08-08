@@ -20,6 +20,7 @@ read = (name)~>
       __dirname, "../private/key/6du.#name"
     )
   )
+  sk = await read("sk")
 
 
 hash = (sk, cwd)~>

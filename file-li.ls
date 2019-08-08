@@ -1,4 +1,3 @@
-
 require! <[
   path
   zlib
@@ -9,6 +8,8 @@ require! {
   \config-6du/6du : config
   \fs-extra : fs
 }
+
+{promisify} = require \util
 
 
 module.exports = {
@@ -23,10 +24,10 @@ module.exports = {
 
     hash-li = []
     file-li = []
+
     for [f,h] in file-hash-li
       file-li.push f
       hash-li.push h
-
 
     b = Buffer.concat([
       n
@@ -43,7 +44,8 @@ module.exports = {
         params:{
           "#{zlib.constants.BROTLI_PARAM_QUALITY}":zlib.constants.BROTLI_MAX_QUALITY
           "#{zlib.constants.BROTLI_PARAM_SIZE_HINT}":b.length
+        }
       }
-    })
+    )
     return compress(b)
 }
