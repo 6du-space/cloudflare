@@ -9,14 +9,6 @@ require! {
   \config-6du/6du : config
   \fs-extra : fs
 }
-compress = promisify(
-  zlib.brotliCompress
-  {
-    params:{
-      "#{zlib.constants.BROTLI_PARAM_QUALITY}":zlib.constants.BROTLI_MAX_QUALITY
-      "#{zlib.constants.BROTLI_PARAM_SIZE_HINT}":result.length
-  }
-})
 
 
 module.exports = {
@@ -41,8 +33,17 @@ module.exports = {
       Buffer.from(file-li.join("\n"))
       Buffer.concat(hash-li)
     ])
-    return Buffer.concat([
+    b = Buffer.concat([
       sodium.sign(sk, sodium.hash(b))
       b
     ])
+    compress = promisify(
+      zlib.brotliCompress
+      {
+        params:{
+          "#{zlib.constants.BROTLI_PARAM_QUALITY}":zlib.constants.BROTLI_MAX_QUALITY
+          "#{zlib.constants.BROTLI_PARAM_SIZE_HINT}":b.length
+      }
+    })
+    return compress(b)
 }
