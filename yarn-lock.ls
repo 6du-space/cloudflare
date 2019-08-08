@@ -2,6 +2,7 @@
 
 require! <[
   crypto
+  base64url
   path
   os
   @yarnpkg/lockfile
@@ -54,25 +55,34 @@ yarn-lock-pack = (sk, yarn-lock-path)~>
 _path = (p)->
   path.resolve(__dirname,"..",p)
 
+int2bin = (n)!~>
+  n = Buffer.allocUnsafe(6)
+  n.writeUIntLE(v,0,6)
+  return trimEnd n
+
 version = (path-v)!~>
   if await fs.exists path-v
-    n = Buffer.alloc(6)
-    (await fs.readFile path-v).copy n
-    return n.readUIntLE(0,6)
+    # n = Buffer.alloc(6)
+    # ().copy n
+    return await fs.readFile path-v
   else
-    version = parseInt(new Date()/(86400000)) - 18115
-    n = Buffer.allocUnsafe(6)
-    n.writeUIntLE(version,0,6)
-    n = trimEnd n
-    fs.outputFile(path-v, n)
-    return version
+    v = parseInt(new Date()/(86400000)) - 18115
+    v = int2bin(v)
+    fs.outputFile(path-v, v)
+    return v
 
 do !~>
   sk = await fs.readFile _path \private/key/6du.sk
   bin = await yarn-lock-pack(sk, _path \sh)
   path-v = _path \dns/v/6du/v
-  version = await version path-v
-  hash = sodium.hash-path(path-v)
+  v = await version path-v
+
+  try
+    hash =  await sodium.hash-path(path-v+base64url(v))
+  catch err
+    if err.errno != -2
+      throw err
+
   console.log hash
 
   # dns-path = path.join(__dirname../dns/v/6du/)
